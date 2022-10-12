@@ -21,9 +21,8 @@ public class SqlSessionTest {
 
 	// board-mapper.xml 과 연결
 	private static final String NAMESPACE = "edu.spring.ex02.BoardMapper";
-
-	// root-context.xml 의 SqlSession
-	@Autowired
+	
+	@Autowired // root-context.xml 의 SqlSession
 	private SqlSession sqlSession;
 
 	@Test
