@@ -22,7 +22,9 @@ import edu.spring.ex02.persistence.BoardDAO;
 public class BoardDAOTest {
 	private static final Logger logger = LoggerFactory.getLogger(OracleJDBCTest.class);
 
-	@Autowired // 이건 주입받은 객체가 아닌가? @Repository @Component 처리를 했다는데...?
+	@Autowired 
+	// @Autowired : 외부에서 객체를 생성해서 주입
+	// BoardDAO은  @Repository 처리로  bean으로 올라가있고, 해당 bean을 주입함
 	private BoardDAO dao;
 
 	@Test
