@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- * property 
 		- name : mapper.xml에서 사용될 이름 
 		- value : DB 테이블 및 컬럼 이름 -->
-		<property name="SPTING_BOARD" value="SPTING_BOARD" />
+		<property name="SPRING_BOARD" value="SPRING_BOARD" />
 		<property name="boardId" value="BOARD_ID" />
 		<property name="boardTitle" value="BOARD_TITLE" />
 		<property name="boardContent" value="BOARD_CONTENT" />

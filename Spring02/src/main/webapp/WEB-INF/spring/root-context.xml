@@ -12,6 +12,8 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- bean : 여기서 만들어진 인스턴스 -->
+	
+	<!-- DataSource -->
 	<bean id="ds" class="oracle.jdbc.pool.OracleDataSource">
 		<property name="dataSourceName" value="ds"/>
 		<property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe"/>
@@ -19,6 +21,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<property name="password" value="tiger"/>
 	</bean>
 
+	<!-- SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds"/>
 		<property name="configLocation"	value="classpath:/mybatis-config.xml"/>
@@ -26,6 +29,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<!-- classpath == src/main/resources -->
 	</bean>
 
+	<!-- SqlSession -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"	destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>

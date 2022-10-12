@@ -16,6 +16,7 @@ import oracle.jdbc.OracleDriver;
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" })
 @WebAppConfiguration
 public class OracleJDBCTest {
+	// 기존 오라클 연결방식
 	private static final Logger logger = LoggerFactory.getLogger(OracleJDBCTest.class);
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 	private static final String USER = "scott";
