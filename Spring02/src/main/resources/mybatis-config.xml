@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- DB 테이블과 컬럼들을 mapper 매핑을 위한 변수 선언 -->
+	<properties>
+		<!-- * property 
+		- name : mapper.xml에서 사용될 이름 
+		- value : DB 테이블 및 컬럼 이름 -->
+		<property name="SPTING_BOARD" value="SPTING_BOARD" />
+		<property name="boardId" value="BOARD_ID" />
+		<property name="boardTitle" value="BOARD_TITLE" />
+		<property name="boardContent" value="BOARD_CONTENT" />
+		<property name="memberId" value="MEMBER_ID" />
+		<property name="boardDateCreated" value="BOARD_DATE_CREATED" />
+		<property name="replyCnt" value="REPLY_CNT" />
+	</properties>
+	
+	<!-- property의 name은 원래 대문자가 모두 소문자로 인식됨 mapUnderscoreToCamelCase 세팅을 추가해야 대문자를 인식함 -->
+	<!-- underscore 명명법을 camel 명명법으로 변환이 가능하도록 세팅 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+</configuration>
