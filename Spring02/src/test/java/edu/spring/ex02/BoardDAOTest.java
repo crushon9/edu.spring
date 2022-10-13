@@ -95,6 +95,7 @@ public class BoardDAOTest {
 		logger.info("총 게시글 수 :" + totalCount);
 	}
 
+	// TODO : 근데 검색 + 페이징 처리는 어떻게 해야하지?
 	private void testSelectBymemberId() {
 		List<BoardVO> list = dao.select("M");
 		for (BoardVO vo : list) {
@@ -103,7 +104,7 @@ public class BoardDAOTest {
 	}
 
 	private void testSelectByTitleOrContent() {
-		List<BoardVO> list = dao.select("수정");
+		List<BoardVO> list = dao.selectByTitleOrContent("수정");
 		for (BoardVO vo : list) {
 			logger.info(vo.toString());
 		}

@@ -27,7 +27,7 @@ import edu.spring.ex02.pageutil.PageCriteria;
 //  <context:component-scan../>
 public class BoardDAOImple implements BoardDAO {
 	private static final Logger logger = LoggerFactory.getLogger(OracleJDBCTest.class);
-	// board-mapper.xml 과 연결
+	// board-mapper.xml 의 namespace 키 값과 동일하게 설정
 	private static final String NAMESPACE = "edu.spring.ex02.BoardMapper";
 
 	// MyBatis의 SqlSession을 사용하기 위해서 스프링 프레임워크가 생성한 bean을 주입(injection)받음
