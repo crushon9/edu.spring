@@ -12,7 +12,9 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- bean : 여기서 만들어진 인스턴스 -->
+	<!-- 여기도 자바언어로 컴파일됨 -->
 	
+	<!-- DB와 쿼리 관련 bean을 생성해놓음 -->
 	<!-- DataSource -->
 	<bean id="ds" class="oracle.jdbc.pool.OracleDataSource">
 		<property name="dataSourceName" value="ds"/>

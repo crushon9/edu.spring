@@ -21,6 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- edu.spring.ex02경로의 모든 component를 스캔해서 bean으로 생성해놓음 -->
 	<context:component-scan base-package="edu.spring.ex02" />
 	
 	
