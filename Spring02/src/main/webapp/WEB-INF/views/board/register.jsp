@@ -9,8 +9,8 @@
 <body>
 	<h2>글 작성 페이지</h2>
 	<form action="register" method="POST">
-	<!-- 등록을 누른순간 name이 (mybatis-config의 typeAliases의 패키지의 클래스와 매칭??)
-	or (컨트롤러의 registerPOST 메소드의 BoardVO?? )setter와 매칭되어 들어감 -->
+	<!-- 등록을 누른순간 name값이 registerPOST()의 파라미터(BoardVO)의 setter들과 매칭되어 들어감 
+	BoardVO 의 멤버변수는 private니깐 직접 접근할 수 없는게 맞고, getter/setter를 거쳐야만 가능-->
 		<div>
 			<p>제목 :</p>
 			<input type="text" name="boardTitle" placeholder="제목입력" required>

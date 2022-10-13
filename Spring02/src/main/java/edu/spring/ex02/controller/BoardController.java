@@ -74,13 +74,16 @@ public class BoardController {
 			return "redirect:/board/register"; // get방식 registerGET()
 		}
 	}
-
+	
 	@GetMapping("/detail")
-	public void detail(Model model, Integer boardId, Integer page) {
-		logger.info("detail() 호출 : boardId = " + boardId + ", page = " + page);
+	public void detail(Model model, Integer boardId, PageCriteria criteria) {
+		logger.info("detail() 호출 : boardId = " + boardId);
+		logger.info(criteria.toString());
 		BoardVO vo = boardService.read(boardId);
 		model.addAttribute("vo", vo);
-		model.addAttribute("page", page); // 게시글 작성 후 글목록으로 돌아갈 페이지를 view에 보냄 
+		// 게시글 작성 후 글목록으로 돌아갈 페이지를 view에 보냄
+		model.addAttribute("page", criteria.getPage());
+		model.addAttribute("numsPerPage", criteria.getNumsPerPage());
 	}
 
 }

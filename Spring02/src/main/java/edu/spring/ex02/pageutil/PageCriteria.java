@@ -44,4 +44,9 @@ public class PageCriteria {
 	public int getEnd() {
 		return this.page * this.numsPerPage;
 	}
+
+	@Override
+	public String toString() {
+		return "PageCriteria [page=" + page + ", numsPerPage=" + numsPerPage + "]";
+	}
 }
