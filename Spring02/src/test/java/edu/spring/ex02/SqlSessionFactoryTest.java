@@ -15,7 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" })
 @WebAppConfiguration
 public class SqlSessionFactoryTest {
-	private static final Logger logger = LoggerFactory.getLogger(OracleJDBCTest.class);
+	private static final Logger logger = LoggerFactory.getLogger(SqlSessionFactoryTest.class);
 
 	// Spring Framework가 관리하는 SqlSessionFactory 객체를 주입받음
 	// root-context.xml에서 bean으로 선택된 SqlSessionFactory 객체를 주입받음

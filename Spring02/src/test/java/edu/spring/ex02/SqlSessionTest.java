@@ -17,7 +17,7 @@ import edu.spring.ex02.domain.BoardVO;
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" })
 @WebAppConfiguration
 public class SqlSessionTest {
-	private static final Logger logger = LoggerFactory.getLogger(OracleJDBCTest.class);
+	private static final Logger logger = LoggerFactory.getLogger(SqlSessionTest.class);
 
 	// board-mapper.xml 과 연결
 	private static final String NAMESPACE = "edu.spring.ex02.BoardMapper";

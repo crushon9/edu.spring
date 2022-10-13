@@ -1,7 +1,6 @@
 package edu.spring.ex02;
 
 import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -21,7 +20,7 @@ import edu.spring.ex02.persistence.BoardDAO;
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" })
 @WebAppConfiguration
 public class BoardDAOTest {
-	private static final Logger logger = LoggerFactory.getLogger(OracleJDBCTest.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardDAOTest.class);
 
 	@Autowired
 	// @Autowired : 외부에서 객체를 생성해서 주입

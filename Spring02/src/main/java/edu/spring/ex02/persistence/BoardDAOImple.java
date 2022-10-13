@@ -26,7 +26,7 @@ import edu.spring.ex02.pageutil.PageCriteria;
 // - 스프링 프레임 워크가 bean을 생성하기 위해서는 root-context.xml (혹은 하위 servlet-context.xml)에  bean으로 등록해야함
 //  <context:component-scan../>
 public class BoardDAOImple implements BoardDAO {
-	private static final Logger logger = LoggerFactory.getLogger(OracleJDBCTest.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardDAOImple.class);
 	// board-mapper.xml 의 namespace 키 값과 동일하게 설정
 	private static final String NAMESPACE = "edu.spring.ex02.BoardMapper";
 
@@ -88,7 +88,7 @@ public class BoardDAOImple implements BoardDAO {
 
 	@Override
 	public List<BoardVO> selectByTitleOrContent(String keyword) {
-		logger.info("selectByTitleOrContent() 호출 : keyword" + keyword);
+		logger.info("selectByTitleOrContent() 호출 : keyword = " + keyword);
 		return sqlSession.selectList(NAMESPACE + ".select_by_title_content", "%" + keyword + "%");
 	}
 }
