@@ -46,7 +46,8 @@ li {
 			<c:forEach var="vo" items="${list }">
 				<tr>
 					<td>${vo.boardId}</td>
-					<!-- ${pageMaker.criteria.page} : 게시글을 클릭한 후 글 목록으로 돌아올때 현재페이지로 돌아오기위해 파라미터를 넘김 -->
+					<!-- ${pageMaker.criteria.page} : 게시글을 클릭한 후 글 목록으로 돌아올때 현재페이지로 돌아오기위해 파라미터를 넘김 
+					파라미터는 String만 되니깐 criteria자체로 넘길수는 없음-->
 					<td><a href="detail?boardId=${vo.boardId}&page=${pageMaker.criteria.page}&numsPerPage=${pageMaker.criteria.numsPerPage}">${vo.boardTitle}</a></td>
 					<td>${vo.memberId}</td>
 					<fmt:formatDate value="${vo.boardDateCreated}" pattern="yyyy-MM-dd HH:mm:ss" var="fmtBoardDateCreated"/>
