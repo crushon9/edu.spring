@@ -2,6 +2,7 @@ package edu.spring.ex02.persistence;
 
 import java.util.List;
 import edu.spring.ex02.domain.BoardVO;
+import edu.spring.ex02.pageutil.PageCriteria;
 
 public interface BoardDAO {
 
@@ -14,4 +15,12 @@ public interface BoardDAO {
 	int update(BoardVO vo);
 
 	int delete(int boardId);
+
+	List<BoardVO> select(PageCriteria criteria);
+
+	int getTotalCount();
+
+	List<BoardVO> select(String memberId);
+
+	List<BoardVO> selectByTitleOrContent(String keyword);
 }

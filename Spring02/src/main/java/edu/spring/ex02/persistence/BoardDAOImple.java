@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import edu.spring.ex02.OracleJDBCTest;
 import edu.spring.ex02.domain.BoardVO;
+import edu.spring.ex02.pageutil.PageCriteria;
 
 // @Component 모든 Spring 관리 구성 요소에 대한 일반 스테레오타입
 // ㄴ @Repository 퍼시스턴스 레이어에 대한 고정관념
@@ -63,5 +64,31 @@ public class BoardDAOImple implements BoardDAO {
 	public int delete(int boardId) {
 		logger.info("delete() 호출");
 		return sqlSession.delete(NAMESPACE + ".delete", boardId);
+	}
+
+	@Override
+	public List<BoardVO> select(PageCriteria criteria) {
+		logger.info("select() 호출");
+		logger.info("start = " + criteria.getStart());
+		logger.info("end = " + criteria.getEnd());
+		return sqlSession.selectList(NAMESPACE + ".paging", criteria);
+	}
+
+	@Override
+	public int getTotalCount() {
+		logger.info("getTotalCount() 호출");
+		return sqlSession.selectOne(NAMESPACE + ".total_count");
+	}
+
+	@Override
+	public List<BoardVO> select(String memberId) {
+		logger.info("select() 호출 : memberId = " + memberId);
+		return sqlSession.selectList(NAMESPACE + ".select_by_memberid", "%" + memberId + "%");
+	}
+
+	@Override
+	public List<BoardVO> selectByTitleOrContent(String keyword) {
+		logger.info("selectByTitleOrContent() 호출 : keyword" + keyword);
+		return sqlSession.selectList(NAMESPACE + ".select_by_title_content", "%" + keyword + "%");
 	}
 }

@@ -11,29 +11,34 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import edu.spring.ex02.domain.BoardVO;
+import edu.spring.ex02.pageutil.PageCriteria;
 import edu.spring.ex02.persistence.BoardDAO;
 
 // SqlSessionTest : sqlSession 자체에 대한 테스트
 // BoardDAOTest : BoardDAOImple의 단위 테스트 (dao.insert(), select(), update(), delete() )
-
+// 				즉 컨트롤러에서 할 작업을 여기서 하는거네?
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" })
 @WebAppConfiguration
 public class BoardDAOTest {
 	private static final Logger logger = LoggerFactory.getLogger(OracleJDBCTest.class);
 
-	@Autowired 
+	@Autowired
 	// @Autowired : 외부에서 객체를 생성해서 주입
-	// BoardDAO은  @Repository 처리로  bean으로 올라가있고, 해당 bean을 주입함
+	// BoardDAO은 @Repository 처리로 bean으로 올라가있고, 해당 bean을 주입함
 	private BoardDAO dao;
 
 	@Test
 	public void testDAO() {
-		testInsert();
+//		testInsert();
 //		testSelectAll();
 //		testSelectByBoardId();
 //		testUpdate();
 //		testDelete();
+//		testSelectPaging();
+//		testTotalCount();
+//		testSelectBymemberId();
+		testSelectByTitleOrContent();
 	}
 
 	private void testInsert() {
@@ -77,4 +82,31 @@ public class BoardDAOTest {
 		}
 	}
 
+	private void testSelectPaging() {
+		PageCriteria criteria = new PageCriteria(1, 5); // 1페이지 5개
+		List<BoardVO> list = dao.select(criteria);
+		for (BoardVO vo : list) {
+			logger.info(vo.toString());
+		}
+	}
+
+	private void testTotalCount() {
+		int totalCount = dao.getTotalCount();
+		logger.info("총 게시글 수 :" + totalCount);
+	}
+
+	private void testSelectBymemberId() {
+		List<BoardVO> list = dao.select("M");
+		for (BoardVO vo : list) {
+			logger.info(vo.toString());
+		}
+	}
+
+	private void testSelectByTitleOrContent() {
+		List<BoardVO> list = dao.select("수정");
+		for (BoardVO vo : list) {
+			logger.info(vo.toString());
+		}
+
+	}
 }

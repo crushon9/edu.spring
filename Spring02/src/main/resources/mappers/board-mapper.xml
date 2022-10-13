@@ -9,7 +9,8 @@ dao - sqlSession의 함수(insert, selectOne, selectList update, delete)와 매�
 	 
 	<!-- id : 식별자로 구분하여 dao 클래스의  sqlSession 특정 함수와 연결하기 위해 사용
 	${key 이름} : mybatis-config.xml의 property-name과 매칭. DB 테이블의 컬럼
-	#{key 이름} : dao 클래스의 sqlSession에서 파라미터로 전송받은 데이터에서 getter로 매핑된 데이터(입력받은 데이터)
+	#{key 이름} : dao 클래스의 sqlSession에서 파라미터로 전송받은 인스턴스(VO등) getter로 매핑된 데이터(입력받은 데이터)
+	resultType : 검색 관련 SQL 구문이 실행되면 ResultSet이 리턴되며, ResultSet에 저장된 검색 결과를 어떤 자바 객체에 매핑할지 지정할 때 사용하는 속성
 	 -->
 	<insert id="insert">
 		insert into ${SPRING_BOARD} (${boardTitle}, ${boardContent}, ${memberId})
@@ -17,10 +18,11 @@ dao - sqlSession의 함수(insert, selectOne, selectList update, delete)와 매�
 		<!-- #{boardTitle} : 변수명이 아니라 getBoardTitle 의 리턴값을 들고오는 거임-->
 	</insert>
 	
+	<!-- 그리고 xml의 네임과 아이디가 대소문자 왜 구분안돼????-->
 	<select id="select_all" resultType="BoardVO">
 	<!-- BoardVO 한줄씩 가져와서 sqlSession.selectList의 메소드에서 List를 뱉어내나?-->
 		select * from ${SPRING_BOARD}
-		order by ${boardId} desc
+		order by ${boardId} DESC
 	</select>
 	
 	<select id="select_by_board_id" resultType="BoardVO">
@@ -38,5 +40,31 @@ dao - sqlSession의 함수(insert, selectOne, selectList update, delete)와 매�
 		delete from ${SPRING_BOARD}
 		where ${boardId} = #{boardId} 
 	</delete>
+	
+	<select id="paging" resultType="BoardVO">
+		SELECT B.${boardId}, B.${boardTitle}, B.${boardContent}, B.${memberId}, B.${boardDateCreated}, B.${replyCnt}
+			FROM (SELECT ROWNUM RN, A.* 
+				FROM (SELECT * FROM ${SPRING_BOARD} ORDER BY ${boardId} DESC)A 
+			)B WHERE RN BETWEEN #{start} AND #{end} 
+	</select>
+	<!-- vo.getBoardId가 #{boardId}가 되니깐 여기는 #{start}가 맞는거지 
+	#{start} : criteria.getStart() 
+	#{end} : criteria.getEnd() -->
+	
+	<select id="total_count" resultType="Integer">
+		select count(*) total_cnt from ${SPRING_BOARD}
+	</select>
+	
+	<select id="select_by_memberid" resultType="BoardVO">
+		select * from ${SPRING_BOARD}
+		where ${memberId} like #{memberId}
+	</select>
+	
+	<select id="select_by_title_content" resultType="BoardVO">
+		select * from ${SPRING_BOARD}
+		where ${boardTitle} like #{keyword} or
+			${boardContent} like #{keyword}
+			order by ${boardId} DESC
+	</select>
 	
 </mapper>
