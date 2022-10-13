@@ -10,12 +10,11 @@ import edu.spring.ex02.pageutil.PageCriteria;
 import edu.spring.ex02.persistence.BoardDAO;
 
 //@Component 모든 Spring 관리 구성 요소에 대한 일반 스테레오타입
-//ㄴ @Repository 퍼시스턴스 레이어에 대한 고정관념
-//ㄴ @Service 서비스 계층에 대한 고정관념
-//ㄴ @Controller 프리젠테이션 레이어의 스테레오타입(spring-mvc)
+//ㄴ @Repository *영속 계층(Persistence Layer)
+//ㄴ @Service *서비스 계층 (Service/Business Layer)
+//ㄴ @Controller *표현 계층(Presentation Layer)
 
-@Service
-// : @Component 의 하위 어노테이션
+@Service // @Component 의 하위 어노테이션
 // * 서비스 계층 (Service/Business Layer)
 // - 표현계층(Presentation Layer)과 영속계층(Persistence Layer) 사이를 연결하여 두 계층이 직접적으로 통신하지 않도록 하는역할
 // - 트랜잭션(transaction) 관리
@@ -23,7 +22,7 @@ import edu.spring.ex02.persistence.BoardDAO;
 public class BoardServiceImple implements BoardService {
 	private static final Logger logger = LoggerFactory.getLogger(BoardServiceImple.class);
 	@Autowired
-	private BoardDAO dao;
+	private BoardDAO dao; //@Repository로 스프링이 관리하는 bean으로 등록되었기때문에 @Autowired 사용가능
 
 	@Override
 	public int create(BoardVO vo) {

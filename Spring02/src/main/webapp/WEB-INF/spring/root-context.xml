@@ -11,6 +11,7 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- Service, Repository, DB 등 비즈니스 로직과 관련된 bean 객체를 설정 -->
 	<!-- Spring 프레임워크에서 관리할 bean 객체들을 선언 → DI(Dependency Injection: 의존성 주입)에 사용되는 객체들
 	서버가 시작될때 bean 인스턴스가 먼저 만들어짐, 여기도 자바언어로 컴파일됨 -->
 	

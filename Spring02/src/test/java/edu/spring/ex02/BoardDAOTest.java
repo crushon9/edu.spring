@@ -16,9 +16,18 @@ import edu.spring.ex02.persistence.BoardDAO;
 // SqlSessionTest : sqlSession 자체에 대한 테스트
 // BoardDAOTest : BoardDAOImple의 단위 테스트 (dao.insert(), select(), update(), delete() )
 // 				즉 Service에서 할 작업을 여기서 하는거네?
+
+// Spring TestContext Frameworkd를 사용하기 위한 선언
 @RunWith(SpringJUnit4ClassRunner.class)
+// Context 환경 설정 파일이 있는 위치를 선언
+// src/main/webapp/WEB-INF/spring/ 디렉토리와 그 하위 디렉토리 아래에 있는 모든 xml 파일을 검색(root-context.xml, servlet-context.xml)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" })
+// WebApplicationContext 객체를 로드하여 사용하겠다는 선언
 @WebAppConfiguration
+
+// @Before 모든 테스트 작업에 앞서 준비되어야 하는 내용을 작성하는 메소드
+// @Test 테스트해야 하는 내용을 작성하는 메소드
+// @After 테스트 작업이 끝난 후 자동으로 실행되는 메소드
 public class BoardDAOTest {
 	private static final Logger logger = LoggerFactory.getLogger(BoardDAOTest.class);
 

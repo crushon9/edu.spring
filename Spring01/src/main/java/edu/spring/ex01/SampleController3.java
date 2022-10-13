@@ -11,11 +11,11 @@ public class SampleController3 {
 	private static final Logger logger = LoggerFactory.getLogger(SampleController3.class);
 
 	@GetMapping("/test3")
-	public String test3(@ModelAttribute(name = "username") String username) {
+	public String test3(@ModelAttribute(name = "username") String input) {
 		logger.info("test3() 호출 ");
 		// @ModelAttribute : 요청받은 데이터를 view에 전송
-		// name = "username" : model.addAttribute()의 키값(username)을 의미
-		return "param-test";
+		// (name = "username") : model.addAttribute()의 키값(username)을 의미
+		return "param-test"; // WEB-INF/views/param-test.jsp 페이지 반환
 	}
 
 	@GetMapping("/test4")

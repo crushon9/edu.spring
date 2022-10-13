@@ -16,11 +16,12 @@ public class SampleJSONController {
 	@GetMapping("/json1")
 	public String json1() {
 		logger.info("json1() 호출");
-		return "sample1"; // jsp 호출
+		return "sample1"; // WEB-INF/views/sample1.jsp 리턴
 	}
 
 	@GetMapping("/json2")
-	@ResponseBody // jsp를 안보내고 다른걸 보낼때..
+	// @ResponseBody : View 페이지가 아닌 반환값 그대로 클라이언트한테 return
+	@ResponseBody
 	public String json2() {
 		logger.info("json2() 호출");
 		return "Hello, Spring"; // 데이터 자체를 리턴
@@ -30,6 +31,6 @@ public class SampleJSONController {
 	@ResponseBody
 	public ProductVO json3() {
 		logger.info("json3() 호출");
-		return new ProductVO("야구공", 10000);
+		return new ProductVO("야구공", 10000); // 객체를 리턴, 출력결과{"name":"야구공","price":10000}
 	}
 }

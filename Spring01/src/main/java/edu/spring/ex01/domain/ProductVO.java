@@ -7,6 +7,8 @@ public class ProductVO {
 
 	public ProductVO() {
 		System.out.println("기본 생성자 호출");
+		this.name = "기본생성자name";
+		this.price = 999;
 	}
 
 	public ProductVO(String name, int price) {
