@@ -17,6 +17,7 @@ public class SampleController2 {
 		logger.info("test1() 호출 : username = " + username);
 
 		// Model : view에 데이터를 전송하기 위한 객체
+		// 서블릿의 response 대신에 model을 쓰네?
 		model.addAttribute("username", username);
 
 		return "param-test"; // WEB-INF/views/param-test.jsp 페이지 반환
