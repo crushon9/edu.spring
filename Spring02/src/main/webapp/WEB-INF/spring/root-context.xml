@@ -11,11 +11,11 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- bean : 서버가 시작될때 bean 인스턴스가 먼저 만들어짐 -->
-	<!-- 여기도 자바언어로 컴파일됨 -->
+	<!-- Spring 프레임워크에서 관리할 bean 객체들을 선언 → DI(Dependency Injection: 의존성 주입)에 사용되는 객체들
+	서버가 시작될때 bean 인스턴스가 먼저 만들어짐, 여기도 자바언어로 컴파일됨 -->
 	
-	<!-- 아래는 DB와 쿼리 관련 bean -->
-	<!-- DataSource -->
+	<!-- Spring-MyBatis 연동을 위한 Bean 객체들 선언 -->
+	<!-- DataSource :Oracle DBCP(DataSource Connection Pool) 빈(bean) 객체	-->
 	<bean id="ds" class="oracle.jdbc.pool.OracleDataSource">
 		<property name="dataSourceName" value="ds"/>
 		<property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe"/>
@@ -23,7 +23,8 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<property name="password" value="tiger"/>
 	</bean>
 
-	<!-- SqlSessionFactory -->
+	<!-- SqlSessionFactory :SqlSession 객체를 생성하기 위해 필요한 빈(bean) 객체
+	-->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds"/>
 		<property name="configLocation"	value="classpath:/mybatis-config.xml"/>
@@ -31,9 +32,12 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<!-- classpath == src/main/resources -->
 	</bean>
 
-	<!-- SqlSession -->
+	<!-- SqlSession :데이터베이스 트랜잭션을 담당하는 빈(bean) 객체-->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"	destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
+	<!-- Spring 프레임워크에서 관리할 Controller(Servlet) 빈(Bean)을 설정
+	→ 스프링 프레임워크가 Servlet Life Cycle을 관리하고, 의존성을 주입함 
+	특정 패키지를 스캔해서 Controller 클래스들을 설정할 수도 있음 -->
 </beans>

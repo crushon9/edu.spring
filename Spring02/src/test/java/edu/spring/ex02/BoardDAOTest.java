@@ -15,7 +15,7 @@ import edu.spring.ex02.persistence.BoardDAO;
 
 // SqlSessionTest : sqlSession 자체에 대한 테스트
 // BoardDAOTest : BoardDAOImple의 단위 테스트 (dao.insert(), select(), update(), delete() )
-// 				즉 컨트롤러에서 할 작업을 여기서 하는거네?
+// 				즉 Service에서 할 작업을 여기서 하는거네?
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" })
 @WebAppConfiguration

@@ -1,7 +1,6 @@
 package edu.spring.ex02;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -21,7 +20,7 @@ public class SqlSessionTest {
 
 	// board-mapper.xml 과 연결
 	private static final String NAMESPACE = "edu.spring.ex02.BoardMapper";
-	
+
 	@Autowired // root-context.xml 의 SqlSession
 	private SqlSession sqlSession;
 
