@@ -33,8 +33,8 @@ public class BoardServiceImple implements BoardService {
 	@Override
 	public List<BoardVO> read(PageCriteria criteria) {
 		logger.info("read() 호출");
-		logger.info("start = " + criteria.getStart());
-		logger.info("end = " + criteria.getEnd());
+		logger.info("startPageNo = " + criteria.getStart());
+		logger.info("endPageNo = " + criteria.getEnd());
 		return dao.select(criteria);
 	}
 

@@ -3,7 +3,7 @@ package edu.spring.ex02.domain;
 import java.util.Date;
 
 public class BoardVO {
-
+	// private 외부에서 직접 접근 할 수 없음
 	private int boardId;
 	private String boardTitle;
 	private String boardContent;

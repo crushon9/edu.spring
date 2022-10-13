@@ -66,8 +66,8 @@ public class BoardDAOImple implements BoardDAO {
 	@Override
 	public List<BoardVO> select(PageCriteria criteria) {
 		logger.info("select() 호출");
-		logger.info("start = " + criteria.getStart());
-		logger.info("end = " + criteria.getEnd());
+		logger.info("startPageNo = " + criteria.getStart());
+		logger.info("endPageNo = " + criteria.getEnd());
 		return sqlSession.selectList(NAMESPACE + ".paging", criteria);
 	}
 
