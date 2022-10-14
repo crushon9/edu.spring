@@ -56,7 +56,7 @@
 					'memberId' : memberId,
 					'replyContent' : replyContent
 				};
-				// $.ajax로 송수신
+				// $.ajax로 댓글 입력
 				$.ajax({
 					type : 'POST',
 					url : 'replies',
@@ -75,13 +75,14 @@
 				}); // end ajax
 			}); // end btn_add.click
 
-			// 게시판 댓글 전체 가져오기
+			// 게시판 댓글 전체 가져오기 
 			function getAllReplies() {
 				console.log('getAllReplies() 호출');
 				var boardId = 3;
 				var memberId = $('#memberId').val();
 				var url = 'replies/all/' + boardId; // REST API 방식 적용
-				$.getJSON( // 자동으로 JSON 데이터가 javaScript로 parsing됨
+				// $.getJSON 방식이므로 JSON.stringify하지 않아도 되고, header도 없어도됨
+				$.getJSON(
 					url,
 					function(data) {// 서버에서 온 data가 저장되어있음
 						var replyList = '';
@@ -126,7 +127,7 @@
 					var replyId = $(this).prevAll('.replyId').val();
 					var replyContent = $(this).prevAll('.replyContent').val();
 					console.log("수정 replyId : " + replyId + ", replyContent : " + replyContent);
-					// ajax로 서버로 데이터 전송
+					// ajax로 서버로 수정 데이터 전송
 					$.ajax({
 						type : 'PUT',
 						url : 'replies/' + replyId,
@@ -157,9 +158,9 @@
 						'Content-Type' : 'application/json',
 						'X-HTTP-Method-Override' : 'DELETE'
 					},
-					data : JSON.stringify({
+					data : { // 이건 JSON으로 파싱안해도 오류가 안나네.. 왜지? 하나라서 그런거야? 숫자라서 그런거야?
 						'replyId' : replyId,
-					}),
+					},
 					success : function(result) {
 						console.log("댓글삭제결과 : " + result);
 						getAllReplies();

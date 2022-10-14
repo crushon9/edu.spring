@@ -26,6 +26,7 @@ import edu.spring.ex03.service.ReplyService;
 // (DELETE)	/replies/숫자 	 : 해당 댓글 번호(replyId)의 댓글 삭제 (=delete)
 
 @RestController // = @Controller + @ResponseBody 섞은거
+// @RestController의 모든 콘트롤러 메소드들은, @ResponseBody 어노테이션 없이, 뷰가 아닌 데이터 자체를 클라이언트(브라우저)에게 서비스(리턴)하는 메소드가 됨
 @RequestMapping(value = "/replies")
 public class ReplyRESTController {
 	private static final Logger logger = LoggerFactory.getLogger(ReplyRESTController.class);
@@ -48,6 +49,7 @@ public class ReplyRESTController {
 
 	@GetMapping("/all/{boardId}") // (GET)/replies/all/숫자
 	public ResponseEntity<List<ReplyVO>> readReplies(@PathVariable("boardId") int boardId) {
+		// @PathVariable : URL의 {boardId}과 매칭시켜주는 annotation
 		logger.info("readReplies() 호출 : boardId = " + boardId);
 		List<ReplyVO> list = replyService.read(boardId);
 		return new ResponseEntity<List<ReplyVO>>(list, HttpStatus.OK); // 자동으로 JSON으로 파싱됨
@@ -56,7 +58,6 @@ public class ReplyRESTController {
 	@PutMapping("/{replyId}") // (PUT)/replies/숫자 
 	public ResponseEntity<Integer> updateReply(@PathVariable("replyId") int replyId, @RequestBody ReplyVO vo) {
 		logger.info("updateReply() 호출 : replyId = " + vo.getReplyId());
-		logger.info(vo.toString());
 		int result = replyService.update(vo);
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
