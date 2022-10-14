@@ -37,5 +37,4 @@ public class ReplyServiceImple implements ReplyService {
 		logger.info("delete() 호출 : replyId = " + replyId);
 		return replayDAO.delete(replyId);
 	}
-
 }
