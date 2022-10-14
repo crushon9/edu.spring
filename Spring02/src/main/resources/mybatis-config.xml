@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			예) MemberVo -> memberVo(사용자 지정) -> membervo(마이바티스 내부)
 			
 		위와 같은 정책에 따라 아래와 같은 사용이 가능합니다. 
-		MemverVo 클래스가 mybatis에는 실제  memvervo 라는 typeAliases로 등록되고
+		MemberVo 클래스가 mybatis에는 실제  membervo 라는 typeAliases로 등록되고
 		실제 사용하는 쿼리 정의 파일에서 어떠한 형태로 정의를 하든 철자만 맞으면 소문자로 
 		일괄 변환하여 비교한 후 해당 typeAliases 객체를 찾아 오기 때문에 사용자는 매우 편리합니다.
 		그럼 왜 굳이 낙타 표기법이니 뭐니 하면서 typeAliases 명을 주나요? 정답은 코드의 가독성 때문입니다. -->

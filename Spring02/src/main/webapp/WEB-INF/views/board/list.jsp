@@ -81,13 +81,23 @@ li {
 		<input type="submit" value="적용">
 	</form>
 	
-	<!-- ${insert_result } : BoardController의 registerPOST() 에서 RedirectAttributesfh 보낸 데이터 -->
+	<!-- ${xxxxx_result } : BoardController의 registerPOST() 에서 RedirectAttributesfh 보낸 데이터 -->
 	<input type="hidden" id="insertResult" value="${insert_result }">
+	<input type="hidden" id="updateResult" value="${update_result }">
+	<input type="hidden" id="deleteResult" value="${delete_result }">
 
 	<script type="text/javascript">
 		var insertResult = $('#insertResult').val();
 		if (insertResult == 'success') {
 			alert('새 글 작성 성공!');
+		}
+		var updateResult = $('#updateResult').val();
+		if (updateResult == 'success') {
+			alert('글 수정 성공!');
+		}
+		var deleteResult = $('#deleteResult').val();
+		if (deleteResult == 'success') {
+			alert('글 삭제 성공!');
 		}
 	</script>
 

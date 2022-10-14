@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.spring.ex03.ReplyMapper">
+	<insert id="insert">
+		insert into ${SPRING_REPLY} (${boardId}, ${memberId}, ${replyContent})
+		values (#{boardId}, #{memberId}, #{replyContent})
+	</insert>
+	
+	<select id="select_all_by_board_id" resultType="ReplyVO">
+		select * from ${SPRING_REPLY}
+		where ${boardId} = #{boardId}
+		order by ${replyId} DESC
+	</select>
+	
+	<update id="update"> <!-- update시 날짜는 트리거로 자동변경 -->
+		update ${SPRING_REPLY}
+		set ${replyContent} = #{replyContent}
+		where ${replyId} = #{replyId}
+	</update>
+	
+	<delete id="delete">
+		delete from ${SPRING_REPLY}
+		where ${replyId} = #{replyId} 
+	</delete>
+</mapper>

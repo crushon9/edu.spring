@@ -28,11 +28,13 @@
 	<div>
 		<textarea rows="20" cols="120" readonly>${vo.boardContent }</textarea>
 	</div>
-	<!-- ${page }, ${numsPerPage } : BoardController의 detail()에서 model에 담겨온 attribute	-->
-	<a href="list?page=${page }&numsPerPage=${numsPerPage }"><input type="button" value="글 목록"></a>
-	<a href="update?boardId=${vo.boardId }"><input type="button" value="글 수정"></a>
+	<!-- ${criteria.page } : BoardController의 detail()에서 model에 담겨온 attribute	-->
+	<a href="list?page=${criteria.page }&numsPerPage=${criteria.numsPerPage }"><input type="button" value="글 목록"></a>
+	<a href="update?boardId=${vo.boardId }&page=${criteria.page }&numsPerPage=${criteria.numsPerPage }"><input type="button" value="글 수정"></a>
 	<form action="delete" method="post" style="display: inline;">
 		<input type="hidden" name="boardId" value="${vo.boardId }">
+		<input type="hidden" name="page" value="${criteria.page }">
+		<input type="hidden" name="numsPerPage" value="${criteria.numsPerPage }">
 		<input type="submit" value="글 삭제">
 	</form>
 	
