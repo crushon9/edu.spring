@@ -10,5 +10,5 @@ public interface ReplyService {
 
 	int update(ReplyVO vo);
 
-	int delete(int replyId);
+	int delete(int replyId, int boardId);
 }

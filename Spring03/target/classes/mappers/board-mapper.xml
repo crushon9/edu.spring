@@ -67,4 +67,10 @@ dao - sqlSession의 함수(insert, selectOne, selectList update, delete)와 매�
 			order by ${boardId} DESC
 	</select>
 	
+	<update id="update_reply_cnt">
+		update ${SPRING_BOARD}
+		set ${replyCnt} = ${replyCnt} + #{amount}
+		where ${boardId} = #{boardId}
+	</update>
+	
 </mapper>

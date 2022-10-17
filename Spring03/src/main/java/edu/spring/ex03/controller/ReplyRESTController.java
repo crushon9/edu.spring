@@ -63,9 +63,12 @@ public class ReplyRESTController {
 	}
 	
 	@DeleteMapping("/{replyId}") // (DELETE)/replies/숫자
-	public ResponseEntity<Integer> deleteReply(@PathVariable("replyId") int replyId) {
+	public ResponseEntity<Integer> deleteReply(@PathVariable("replyId") int replyId, @RequestBody ReplyVO vo) { 
 		logger.info("deleteReply() 호출 : replyId = " + replyId);
-		int result = replyService.delete(replyId);
+		// **인자로 받은 vo의 replyId에는 데이터가 안들어가있음
+		// 왜냐면 jsp에서 replyId는 url로 받아왔고, vo는 data로 받아오기 때문에
+		logger.info("vo.getReplyId() = " + vo.getReplyId());
+		int result = replyService.delete(replyId, vo.getBoardId());
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 

@@ -27,7 +27,7 @@
 	
 	<!-- 댓글 입력 -->
 	<div style="text-align: center;">
-			<input type="text" id="memberId" value="작성자" readonly>
+			<input type="text" id="memberId" value="아이디" readonly>
 			<input type="text" id="replyContent">
 			<button id="btn_add">작성</button>
 	</div>
@@ -48,7 +48,7 @@
 
 			// 버튼 클릭시 댓글 추가
 			$('#btn_add').click(function() {
-				var boardId = 3; // 게시글번호 예시TEST
+				var boardId = 28; // 게시글번호 예시TEST
 				var memberId = $('#memberId').val();
 				var replyContent = $('#replyContent').val();
 				var obj = {
@@ -78,12 +78,13 @@
 			// 게시판 댓글 전체 가져오기 
 			function getAllReplies() {
 				console.log('getAllReplies() 호출');
-				var boardId = 3;
+				var boardId = 28;
 				var memberId = $('#memberId').val();
 				var url = 'replies/all/' + boardId; // REST API 방식 적용
 				// $.getJSON 방식이므로 JSON.stringify하지 않아도 되고, header도 없어도됨
 				$.getJSON(
-					url,
+			
+						url,
 					function(data) {// 서버에서 온 data가 저장되어있음
 						var replyList = '';
 						$(data).each(function() {
@@ -149,18 +150,19 @@
 			
 			// 삭제 버튼을 클릭하면 선택된 댓글 삭제
 			$('#replies').on('click', '.reply_item .btn_delete', function(){
+				var boardId = 28;
 				var replyId = $(this).prevAll('.replyId').val();
-				console.log("삭제 replyId : " + replyId);
+				console.log("삭제 replyId : " + replyId + " , boardId : " + boardId);
 				$.ajax({
 					type : 'DELETE',
-					url : 'replies/' + replyId,
+					url : 'replies/' + replyId, // 이 데이터는 담기지 않네?
 					headers : {
 						'Content-Type' : 'application/json',
 						'X-HTTP-Method-Override' : 'DELETE'
 					},
-					data : { // 이건 JSON으로 파싱안해도 오류가 안나네.. 왜지? 하나라서 그런거야? 숫자라서 그런거야?
-						'replyId' : replyId,
-					},
+					data : JSON.stringify({
+						'boardId' : boardId
+					}), // 여기 데이터는 vo에 자동으로 담기는데
 					success : function(result) {
 						console.log("댓글삭제결과 : " + result);
 						getAllReplies();
