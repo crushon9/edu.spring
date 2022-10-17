@@ -17,6 +17,10 @@ public class ReplyServiceImple implements ReplyService {
 	@Autowired
 	private BoardDAO boardDAO;
 
+	// @Transactional
+	// 두 개의 DB 변경이 생길때
+	// 위의 내용은 수행되었고 아래 내용은 에러가 발생한 경우, 위의 내용을 rollback 해주는 어노테이션
+	// root-context.xml에서 설정
 	@Override
 	public int create(ReplyVO vo) {
 		logger.info("create() 호출");
