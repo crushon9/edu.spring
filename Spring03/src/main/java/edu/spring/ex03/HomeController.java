@@ -38,7 +38,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		service.deleteCustomer();
+		service.deleteCustomer(); // pointCut
 		
 		return "home";
 	}
