@@ -33,6 +33,22 @@ public class HomeAspect {
 	@Around("pcHome()") // 포인트컷 메소드를 적용
 	public Object homeAdvice(ProceedingJoinPoint jp) {
 		Object result = null;
+		logger.info("======= homeAdvice() 호출");
+
+		try {
+			logger.info("======= home() 호출 전"); // @Before
+
+			result = jp.proceed(); // HomeController.home() 실행
+
+			logger.info("======= home() 리턴 후"); // @AfterReturning
+
+		} catch (Throwable e) {
+			// @AfterThrowing
+			logger.info("======= 예외 발생 : " + e.getMessage());
+		} finally {
+			logger.info("======= finally");
+		}
+
 		return result;
 	}
 
