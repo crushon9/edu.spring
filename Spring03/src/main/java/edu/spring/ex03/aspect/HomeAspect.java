@@ -20,6 +20,12 @@ public class HomeAspect {
 	// 요청이 들어오면 Filter → Interceptor → AOP → Interceptor → Filter 순으로 거침
 	// Filter 보다 Aspect가 더 섬세하게 컨트롤 가능
 
+	// Before	메소드 실행 전에 동작
+	// After	메소드 실행 후에 동작
+	// After-returning	메소드가 정상적으로 실행된 후에 동작
+	// After-throwing	예외가 발생한 후에 동작
+	// Around	메소드 호출 이전, 이후, 예외발생 등 모든 시점에서 동작
+	
 	// @Pointcut을 지정하는 방법
 	// 1. @Before, @After, .. 어노테이션 안에서 지정
 	// 2. @Pointcut 어노테이션 안에서 지정

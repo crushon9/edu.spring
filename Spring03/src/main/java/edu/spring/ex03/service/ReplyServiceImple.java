@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import edu.spring.ex03.domain.ReplyVO;
 import edu.spring.ex03.persistence.BoardDAO;
 import edu.spring.ex03.persistence.ReplyDAO;
@@ -22,7 +24,8 @@ public class ReplyServiceImple implements ReplyService {
 	// 위의 내용은 수행되었고 아래 내용은 에러가 발생한 경우, 위의 내용을 rollback 해주는 어노테이션
 	// root-context.xml에서 설정
 	@Override
-	public int create(ReplyVO vo) {
+	@Transactional
+	public int create(ReplyVO vo) throws Exception {
 		logger.info("create() 호출");
 		// 댓글이 입력되면(insert) 게시판의 ReplyCnt가 1증가(update)
 		replayDAO.insert(vo);
@@ -45,9 +48,10 @@ public class ReplyServiceImple implements ReplyService {
 	}
 
 	@Override
-	public int delete(int replyId, int boardId) {
+	@Transactional
+	public int delete(int replyId, int boardId) throws Exception {
 		logger.info("delete() 호출 : replyId = " + replyId);
-		// 댓글이 삭제면(delete) 게시판의 ReplyCnt가 1감소(update)
+		// 댓글이 삭제되면(delete) 게시판의 ReplyCnt가 1감소(update)
 		replayDAO.delete(replyId);
 		logger.info("댓글삭제성공");
 		boardDAO.updateReplyCnt(-1, boardId);

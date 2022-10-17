@@ -43,7 +43,12 @@ public class ReplyRESTController {
 
 		// ResponseEntity<T> : REST 방식에서 데이터를 리턴할 때 쓰는 객체
 		// 데이터와 HttpStatus를 전송, <T>는 보내고자 하는 데이터 Type
-		int result = replyService.create(vo);
+		int result = 0;
+		try {
+			result = replyService.create(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 
@@ -54,21 +59,26 @@ public class ReplyRESTController {
 		List<ReplyVO> list = replyService.read(boardId);
 		return new ResponseEntity<List<ReplyVO>>(list, HttpStatus.OK); // 자동으로 JSON으로 파싱됨
 	}
-	
-	@PutMapping("/{replyId}") // (PUT)/replies/숫자 
+
+	@PutMapping("/{replyId}") // (PUT)/replies/숫자
 	public ResponseEntity<Integer> updateReply(@PathVariable("replyId") int replyId, @RequestBody ReplyVO vo) {
 		logger.info("updateReply() 호출 : replyId = " + vo.getReplyId());
 		int result = replyService.update(vo);
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/{replyId}") // (DELETE)/replies/숫자
-	public ResponseEntity<Integer> deleteReply(@PathVariable("replyId") int replyId, @RequestBody ReplyVO vo) { 
+	public ResponseEntity<Integer> deleteReply(@PathVariable("replyId") int replyId, @RequestBody ReplyVO vo) {
 		logger.info("deleteReply() 호출 : replyId = " + replyId);
 		// **인자로 받은 vo의 replyId에는 데이터가 안들어가있음
 		// 왜냐면 jsp에서 replyId는 url로 받아왔고, vo는 data로 받아오기 때문에
 		logger.info("vo.getReplyId() = " + vo.getReplyId());
-		int result = replyService.delete(replyId, vo.getBoardId());
+		int result = 0;
+		try {
+			result = replyService.delete(replyId, vo.getBoardId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 
