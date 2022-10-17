@@ -26,7 +26,7 @@ import edu.spring.ex03.service.BoardService;
 //* 표현 계층(Presentation Layer)
 // View(페이지)와 Service를 연결하는 역할
 // request에 대한 response를 전달하는 역할
-@RequestMapping(value = "/board") // url : /ex02/board
+@RequestMapping(value = "/board") // url : /ex03/board
 public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	@Autowired
