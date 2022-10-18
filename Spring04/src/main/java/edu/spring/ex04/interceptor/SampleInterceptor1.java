@@ -19,7 +19,7 @@ public class SampleInterceptor1 extends HandlerInterceptorAdapter {
 
 	// * 설정방법
 	// HandlerInterceptorAdapter를 상속받는 클래스 생성
-	// servlet-context.xml에 bean과 url 매핑 설정
+	// servlet-context.xml에 bean과 url mapping 설정
 
 	// * Filter, Interceptor, AOP 의 각 사용 용도에 대한 고찰
 	// <Filter>
@@ -32,13 +32,13 @@ public class SampleInterceptor1 extends HandlerInterceptorAdapter {
 	// 비지니스(Service) 계층에 대한 세밀한 조정이 필요할 때
 	// 로깅, 트랜잭션, 예외처리 등
 
-	// HandlerInterceptorAdapter 의 @Override 종류
+	// == HandlerInterceptorAdapter 의 @Override Method 종류 ==
 	// * preHandle
 	// 요청(request)에 해당하는 컨트롤러 메소드가 동작하기 전에 request을 가로채서 해야할 기능들을 작성
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception { // 시작부터 끝까지 request와 response는 존재한다
-		logger.info("===== preHandle 호출");
+		logger.info("===== preHandle() 호출");
 		return super.preHandle(request, response, handler);
 	}
 
@@ -47,7 +47,7 @@ public class SampleInterceptor1 extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception { // modelAndView : 데이터 보내는 역할
-		logger.info("===== postHandle 호출");
+		logger.info("===== postHandle() 호출");
 		super.postHandle(request, response, handler, modelAndView);
 	}
 
@@ -56,7 +56,7 @@ public class SampleInterceptor1 extends HandlerInterceptorAdapter {
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		logger.info("===== afterCompletion 호출");
+		logger.info("===== afterCompletion() 호출");
 		super.afterCompletion(request, response, handler, ex);
 	}
 

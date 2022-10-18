@@ -16,11 +16,11 @@ public class SampleInterceptor2 extends HandlerInterceptorAdapter {
 	// 요청(request)에 해당하는 컨트롤러 메소드가 동작하기 전에 request을 가로채서 해야할 기능들을 작성
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception { // 시작부터 끝까지 request와 response는 존재한다
+			throws Exception {
 		logger.info("===== preHandle 호출");
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		Method method = handlerMethod.getMethod();
-		logger.info("url 경로에 있는 bean 객체 : " + handlerMethod.getBean()); // HomeController (servlet-context.xml에서 설정했음)
+		logger.info("url 경로에 있는 bean 객체 : " + handlerMethod.getBean()); // HomeController Class (servlet-context.xml에서 설정했음)
 		logger.info("url 경로에 있는 method 이름 : " + method.getName());
 
 		return true; // preHandle() 리턴값의 의미
