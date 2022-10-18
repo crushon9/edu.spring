@@ -21,10 +21,22 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 뒤로가기 캐시 삭제 설정 코드 -->
+	<interceptors>
+		<beans:bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+			<beans:property name="cacheSeconds" value="0"/>
+			<beans:property name="useExpiresHeader" value="true"/>
+			<beans:property name="useCacheControlHeader" value="true"/>
+			<beans:property name="useCacheControlNoStore" value="true"/>
+		</beans:bean>
+	</interceptors>
+	
 	<!-- Interceptor 클래스의 인스턴스를 bean으로 관리 -->
 	<beans:bean id="sample1" class="edu.spring.ex04.interceptor.SampleInterceptor1">
 	</beans:bean>
 	<beans:bean id="sample2" class="edu.spring.ex04.interceptor.SampleInterceptor2">
+	</beans:bean>
+	<beans:bean id="authInterceptor" class="edu.spring.ex04.interceptor.AuthInterceptor">
 	</beans:bean>
 	
 	<!-- Interceptor 가 가로챌 URL 매핑 설정 -->
@@ -37,6 +49,11 @@
 			<mapping path="/test1"/> <!-- Interceptor할 url 경로 (HomeController @GetMapping("/test1")-->
 			<mapping path="/test2"/>
 			<beans:ref bean="sample2"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/board/register"/>
+			<mapping path="/board/test"/>
+			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>
 
